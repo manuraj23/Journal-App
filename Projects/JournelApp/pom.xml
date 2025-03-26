@@ -11,8 +11,8 @@
 	<groupId>com.JournelApp</groupId>
 	<artifactId>JournelApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Journel App</name>
-	<description>Journel App</description>
+	<name>Journal App</name>
+	<description>Journal App</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -35,9 +35,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
