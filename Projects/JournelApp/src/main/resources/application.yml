@@ -1,13 +1,5 @@
 spring:
-  data:
-    mongodb:
-      uri: mongodb+srv://manuraj0642:l4jMctLwoCR3Dw6U@cluster0.qvcxx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-      database: JournelDB
-      auto-index-creation: true
-
-server:
-  port: 8081
-  servlet:
-    context-path: /journalApp
+  profiles:
+    active: dev
 
 #preference will be given to application.properties if same properties is present in both files
