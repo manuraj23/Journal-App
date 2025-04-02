@@ -2,4 +2,8 @@ spring:
   profiles:
     active: dev
 
+weather:
+  api:
+    key: 91294cd1385507c7857a5f51ddd14bf5
+
 #preference will be given to application.properties if same properties is present in both files
