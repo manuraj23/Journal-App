@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/journal")
@@ -64,7 +63,7 @@ public class JournalEntryControllerV2 {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user=userService.findByUsername(username);
-        List<JournalEntry>collect= user.getJournalEntries().stream().filter(x->x.getId().equals(myId)).collect(Collectors.toList());
+        List<JournalEntry>collect= user.getJournalEntries().stream().filter(x->x.getId().equals(myId)).toList();
         if(!collect.isEmpty()){
             Optional<JournalEntry> journalEntry = journalEntryService.getJournalEntryById(myId);
             if(journalEntry.isPresent()){
@@ -101,7 +100,7 @@ public class JournalEntryControllerV2 {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user = userService.findByUsername(username);
-        List<JournalEntry> collect = user.getJournalEntries().stream().filter(x -> x.getId().equals(myId)).collect(Collectors.toList());
+        List<JournalEntry> collect = user.getJournalEntries().stream().filter(x -> x.getId().equals(myId)).toList();
         if (!collect.isEmpty()) {
             Optional<JournalEntry> oldEntryOpt = journalEntryService.getJournalEntryById(myId);
             if (oldEntryOpt.isPresent()) {

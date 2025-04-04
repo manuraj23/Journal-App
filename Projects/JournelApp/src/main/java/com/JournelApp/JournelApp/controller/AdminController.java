@@ -34,6 +34,7 @@ public class AdminController {
         userService.saveAdmin(user);
     }
 
+    @GetMapping("clearCache")
     public void clearAppCache(){
         appCache.init();
     }
