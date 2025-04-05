@@ -1,10 +1,7 @@
 package com.JournelApp.JournelApp.Entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -18,20 +15,24 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class User {
 
     @Id
     private ObjectId id;
-    @Indexed(unique = true)
 
+    @Indexed(unique = true)
     @NonNull
     private String username;
+
+    @NonNull
+    private String password;
 
     private String email;
     private String sentimentAnalysis;
 
-    @NonNull
-    private String password;
+
 
     @DBRef
     private List<JournalEntry> journalEntries=new ArrayList<>();

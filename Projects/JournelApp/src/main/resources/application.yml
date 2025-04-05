@@ -2,8 +2,23 @@ spring:
   profiles:
     active: dev
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: manuraj082004@gmail.com
+    password: jcuu wxov qzvy jqgx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
 weather:
   api:
     key: 91294cd1385507c7857a5f51ddd14bf5
+
+
 
 #preference will be given to application.properties if same properties is present in both files

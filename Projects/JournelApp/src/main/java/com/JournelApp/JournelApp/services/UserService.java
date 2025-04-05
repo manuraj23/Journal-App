@@ -51,4 +51,11 @@ public class UserService {
     public void deleteJournalEntryById(ObjectId id){
         userRepository.deleteById(id);
     }
+
+    public Optional<User> makeAdmin(User user) {
+        User newUser= userRepository.findByUsername(user.getUsername());
+        newUser.setRoles(List.of("USER","ADMIN"));
+        userRepository.save(newUser);
+        return Optional.of(newUser);
+    }
 }
