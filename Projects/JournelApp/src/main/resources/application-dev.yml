@@ -10,6 +10,30 @@ spring:
       port: 13616
       username: default
       password: SEpLtoKoh7RqfQ9roXbAeILpmWxKdfp1
+  kafka:
+    bootstrap-servers:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.JournelApp.JournelApp.Model;
+    properties:
+      security:
+        protocol: SASL_SSL
+        sasl:
+          mechanism: PLAIN
+          jaas:
+            config: org.apache.kafka.common.security.scram.ScramLoginModule required username="manuraj" password="manuraj@123";
+        session:
+          timeout:
+            ms: 30000
 
 
 server:

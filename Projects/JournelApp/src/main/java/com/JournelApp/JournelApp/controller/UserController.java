@@ -44,13 +44,13 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?>updateUser(){
+    public ResponseEntity<?>deleteUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         userRepository.deleteByUsername(authentication.getName());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("greeting")
+    @GetMapping("/greeting")
     public ResponseEntity<?>greeting(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         WeatherResponse weatherResponse = weatherService.getWeather("Phagwara");
