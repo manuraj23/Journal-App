@@ -24,8 +24,8 @@ Journal App is a web application that allows users to manage their journal entri
 ## Running the Application
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/codebyAbhishekBharti/journal-app.git
-   cd journal-app
+   git clone https://github.com/manuraj23/Journal-App
+   cd Journal-App
    ```
 2. Build the project using Maven:  
    ```bash
@@ -35,7 +35,7 @@ Journal App is a web application that allows users to manage their journal entri
    ```bash
    mvn spring-boot:run
    ```
-4. The application will be accessible at [http://localhost:8080/journal](http://localhost:8080/journal).  
+4. The application will be accessible at [http://localhost:8081/journal](http://localhost:8081/journal).  
 
 ## API Endpoints
 ### User Endpoints
