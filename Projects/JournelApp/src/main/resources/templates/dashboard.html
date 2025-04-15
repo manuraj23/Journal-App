@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Journal App</title>
+    <style>
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .logout-button {
+            background-color: #ff4c4c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .logout-button:hover {
+            background-color: #ff3333;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Welcome to Journal App</h2>
+    <p>Hello, <span id="username"></span></p>
+
+    <button class="logout-button" onclick="logout()">Logout</button>
+</div>
+
+<script>
+    // Fetching the username from the localStorage or token
+    const username = localStorage.getItem("username");
+    if (!username) {
+        // If username is not found, redirect to login page
+        window.location.href = "/journalApp/login";
+    } else {
+        document.getElementById("username").innerText = username;
+    }
+
+    function logout() {
+        // Clear the token and user data from localStorage
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+
+        // Redirect to login page
+        window.location.href = "/journalApp/login";
+    }
+</script>
+</body>
+</html>
