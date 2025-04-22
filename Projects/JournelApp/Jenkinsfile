@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.6'   // Make sure this version is configured in Jenkins tools
-        jdk 'Java 21'         // Setup Java 21 in Jenkins tools
+        maven 'apache-maven-3.8.8'   // 👈 match exact name
+        jdk 'jdk21'         // Setup Java 21 in Jenkins tools
     }
 
     environment {
