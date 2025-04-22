@@ -2,55 +2,49 @@ pipeline {
     agent any
 
     tools {
-        maven 'apache-maven-3.8.8'
-        jdk 'jdk21'
+        maven 'Maven 3.9.6'   // Make sure this version is configured in Jenkins tools
+        jdk 'Java 21'         // Setup Java 21 in Jenkins tools
     }
 
     environment {
-        IMAGE_NAME = 'journal-app'
-        CONTAINER_NAME = 'journal-app'
+        SPRING_PROFILES_ACTIVE = 'docker'
     }
 
     stages {
-        stage('Clone Repo') {
+        stage('Clone Code') {
             steps {
-                git 'https://github.com/manuraj23/Journal-App.git'
+                git url: 'https://github.com/manuraj23/Journal-App.git', branch: 'main'
             }
         }
 
         stage('Build with Maven') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Run Tests') {
             steps {
-                script {
-                    bat "docker build -t ${IMAGE_NAME} ."
-                }
+                sh 'mvn test'
             }
         }
 
-        stage('Stop Existing Containers') {
+        stage('Docker Build') {
             steps {
-                bat 'docker-compose down || exit 0'
+                sh 'docker build -t journal-app .'
             }
         }
 
-        stage('Start Services with Docker Compose') {
+        stage('Docker Run') {
             steps {
-                bat 'docker-compose up -d --build'
+                sh 'docker-compose -f docker-compose.yml up -d'
             }
         }
     }
 
     post {
-        success {
-            echo '✅ Deployment Successful!'
-        }
-        failure {
-            echo '❌ Deployment Failed!'
+        always {
+            echo 'Pipeline execution completed.'
         }
     }
 }
