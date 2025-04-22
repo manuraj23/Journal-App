@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'apache-maven-3.8.8'   // 👈 match exact name
-        jdk 'jdk21'                  // 👈 match exact name
+        maven 'apache-maven-3.8.8'
+        jdk 'jdk21'
     }
 
     environment {
@@ -19,25 +19,33 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                dir('Projects/JournelApp') { // 👈 pom.xml is here
+                    bat 'mvn clean package -DskipTests'
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test'
+                dir('Projects/JournelApp') {
+                    bat 'mvn test'
+                }
             }
         }
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t journal-app .'
+                dir('Projects/JournelApp') {
+                    bat 'docker build -t journal-app .'
+                }
             }
         }
 
         stage('Docker Run') {
             steps {
-                bat 'docker-compose -f docker-compose.yml up -d'
+                dir('Projects/JournelApp') {
+                    bat 'docker-compose -f docker-compose.yml up -d'
+                }
             }
         }
     }
