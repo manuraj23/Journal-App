@@ -30,5 +30,6 @@ public class JournalAppApplication {
 	}
 
 	//testing ci/cd triggering
+
 	//ngrok http 8090
 }
