@@ -2,33 +2,27 @@ pipeline {
     agent any
 
     tools {
-        maven 'apache-maven-3.8.8'
-        jdk 'jdk21'
+        maven 'apache-maven-3.8.8'    // Jenkins > Tools config mein set hona chahiye
+        jdk 'jdk21'                   // Jenkins > Tools config mein set hona chahiye
     }
 
     environment {
-        SPRING_PROFILES_ACTIVE = 'docker'
+        MAVEN_HOME = tool 'apache-maven-3.8.8'
+        JAVA_HOME = tool 'jdk21'
+        PATH = "${MAVEN_HOME}/bin:${JAVA_HOME}/bin:${env.PATH}"
     }
 
     stages {
         stage('Clone Code') {
             steps {
-                git url: 'https://github.com/manuraj23/Journal-App.git', branch: 'main'
+                git 'https://github.com/manuraj23/Journal-App.git'
             }
         }
 
         stage('Build with Maven') {
             steps {
-                dir('Projects/JournelApp') { // 👈 pom.xml is here
-                    bat 'mvn clean package -DskipTests'
-                }
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
                 dir('Projects/JournelApp') {
-                    bat 'mvn test'
+                    bat 'mvn clean package -DskipTests'
                 }
             }
         }
@@ -44,15 +38,31 @@ pipeline {
         stage('Docker Run') {
             steps {
                 dir('Projects/JournelApp') {
-                    bat 'docker-compose -f docker-compose.yml up -d'
+                    bat 'docker-compose up -d'
+                }
+            }
+        }
+
+        // Optional cleanup stage
+        stage('Docker Cleanup') {
+            when {
+                beforeInput true
+                expression { return false }  // change to `true` if you want it to auto-run
+            }
+            steps {
+                dir('Projects/JournelApp') {
+                    bat 'docker-compose down'
                 }
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline execution completed.'
+        failure {
+            echo 'Build failed 😞'
+        }
+        success {
+            echo 'Build and deployment successful 🚀'
         }
     }
 }
