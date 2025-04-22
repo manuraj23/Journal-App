@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    triggers {
+            githubPush()
+        }
     tools {
         maven 'apache-maven-3.8.8'
         jdk 'jdk21'
