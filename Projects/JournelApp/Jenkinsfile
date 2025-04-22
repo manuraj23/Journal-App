@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'apache-maven-3.8.8'   // 👈 match exact name
-        jdk 'jdk21'         // Setup Java 21 in Jenkins tools
+        jdk 'jdk21'                  // 👈 match exact name
     }
 
     environment {
@@ -19,25 +19,25 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t journal-app .'
+                bat 'docker build -t journal-app .'
             }
         }
 
         stage('Docker Run') {
             steps {
-                sh 'docker-compose -f docker-compose.yml up -d'
+                bat 'docker-compose -f docker-compose.yml up -d'
             }
         }
     }
