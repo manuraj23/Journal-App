@@ -28,4 +28,6 @@ public class JournalAppApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+
+	//testing ci/cd triggering
 }
