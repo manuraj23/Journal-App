@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                dir('Projects/JournelApp') { // 👈 pom.xml is here
+                dir('Projects/JournelApp') {
                     bat 'mvn clean package -DskipTests'
                 }
             }
