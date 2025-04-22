@@ -2,67 +2,49 @@ pipeline {
     agent any
 
     tools {
-        maven 'apache-maven-3.8.8'    // Jenkins > Tools config mein set hona chahiye
-        jdk 'jdk21'                   // Jenkins > Tools config mein set hona chahiye
+        maven 'apache-maven-3.8.8'   // 👈 match exact name
+        jdk 'jdk21'                  // 👈 match exact name
     }
 
     environment {
-        MAVEN_HOME = tool 'apache-maven-3.8.8'
-        JAVA_HOME = tool 'jdk21'
-        PATH = "${MAVEN_HOME}/bin:${JAVA_HOME}/bin:${env.PATH}"
+        SPRING_PROFILES_ACTIVE = 'docker'
     }
 
     stages {
         stage('Clone Code') {
             steps {
-                git 'https://github.com/manuraj23/Journal-App.git'
+                git url: 'https://github.com/manuraj23/Journal-App.git', branch: 'main'
             }
         }
 
         stage('Build with Maven') {
             steps {
-                dir('Projects/JournelApp') {
-                    bat 'mvn clean package -DskipTests'
-                }
+                bat 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat 'mvn test'
             }
         }
 
         stage('Docker Build') {
             steps {
-                dir('Projects/JournelApp') {
-                    bat 'docker build -t journal-app .'
-                }
+                bat 'docker build -t journal-app .'
             }
         }
 
         stage('Docker Run') {
             steps {
-                dir('Projects/JournelApp') {
-                    bat 'docker-compose up -d'
-                }
-            }
-        }
-
-        // Optional cleanup stage
-        stage('Docker Cleanup') {
-            when {
-                beforeInput true
-                expression { return false }  // change to `true` if you want it to auto-run
-            }
-            steps {
-                dir('Projects/JournelApp') {
-                    bat 'docker-compose down'
-                }
+                bat 'docker-compose -f docker-compose.yml up -d'
             }
         }
     }
 
     post {
-        failure {
-            echo 'Build failed 😞'
-        }
-        success {
-            echo 'Build and deployment successful 🚀'
+        always {
+            echo 'Pipeline execution completed.'
         }
     }
 }
