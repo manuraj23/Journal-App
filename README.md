@@ -14,6 +14,7 @@ Journal App is a web application that allows users to manage their journal entri
 - Redis
 - MongoDB
 - JUnit
+  
 
 
 ## Prerequisites
