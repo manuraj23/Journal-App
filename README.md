@@ -18,6 +18,7 @@ Journal App is a web application that allows users to manage their journal entri
 - MongoDB
 - JUnit
 - Docker
+- Jenkins
   
 ## Prerequisites
 - Java 11 or higher
