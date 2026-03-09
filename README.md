@@ -24,7 +24,6 @@ Journal App is a web application that allows users to manage their journal entri
 - Redis
 - SonarQube
 
-
 ## Running the Application
 1. Clone the repository:  
    ```bash
