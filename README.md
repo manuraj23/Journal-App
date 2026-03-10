@@ -16,6 +16,7 @@ Journal App is a web application that allows users to manage their journal entri
 - JUnit
 - Docker
 - Jenkins
+- Git
   
 ## Prerequisites
 - Java 11 or higher
