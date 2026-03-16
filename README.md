@@ -77,6 +77,7 @@ Sends email notifications to users.
 ### Scheduled Tasks
 The application includes scheduled tasks that run at predefined intervals to perform maintenance tasks such as clearing expired cache entries and updating journal statistics.
 
+
 ## Code Quality Analysis with SonarQube
 The application integrates with SonarQube to analyze code quality and ensure best practices in coding standards, security, and maintainability.
 
