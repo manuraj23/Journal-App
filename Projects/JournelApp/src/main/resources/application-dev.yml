@@ -5,7 +5,6 @@ spring:
       database: JournelDB
       auto-index-creation: true
     redis:
-#      uri:redis-cli -u redis://default:SEpLtoKoh7RqfQ9roXbAeILpmWxKdfp1@redis-13616.c301.ap-south-1-1.ec2.redns.redis-cloud.com:13616
       host: redis-13616.c301.ap-south-1-1.ec2.redns.redis-cloud.com
       port: 13616
       username: default
