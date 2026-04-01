@@ -2,6 +2,7 @@
 ## Overview
 Journal App is a web application that allows users to manage their journal entries. It includes features such as user authentication, role-based access control (RBAC), scheduled tasks, weather information retrieval, email notifications, integration with Redis for caching, and code quality analysis using SonarQube.
 
+
 ## Technologies Used
 - Java
 - Spring Boot
